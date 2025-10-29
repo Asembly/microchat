@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: chat-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5433/db
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    username: ${SPRING_DATASOURCE_USERNAME}
+  kafka:
+    bootstrap-servers: kafka:9090
+  jwt:
+    secret:
+      auth_service: ${SPRING_JWT_SECRET}
+server:
+  port: 8082
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${SPRING_EUREKA_CLIENT_SERVICE-URL}
+feign:
+  service:
+    user-service: ${FEIGN_SERVICE_USER}
