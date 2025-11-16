@@ -2,8 +2,6 @@ package asembly.chat_service.kafka;
 
 import asembly.event.chat.ChatEvent;
 import asembly.event.chat.ChatEventType;
-import asembly.event.chat.ChatUserEvent;
-import asembly.event.chat.ChatUserEventType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -21,18 +19,6 @@ public class ProducerChat {
     public void sendEvent(ChatEventType type, String chat_id, List<String> users_id)
     {
         ChatEvent event = new ChatEvent(
-                type,
-                chat_id,
-                users_id
-        );
-
-        kafkaTemplate.send("chat-events",chat_id,event);
-        log.info("Chat message send: {}\nType: {}", event, event.type());
-    }
-
-    public void sendEvent(ChatUserEventType type, String chat_id, List<String> users_id)
-    {
-        ChatUserEvent event = new ChatUserEvent(
                 type,
                 chat_id,
                 users_id

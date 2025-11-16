@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>asembly</groupId>
 	<artifactId>chat-service</artifactId>
-	<version>1.3.1</version>
+	<version>1.3.6</version>
 	<name>chat-service</name>
 	<description>Chat Service</description>
 	<url/>
@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>asembly</groupId>
 			<artifactId>microlib</artifactId>
-			<version>1.4.5</version>
+			<version>1.4.9</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

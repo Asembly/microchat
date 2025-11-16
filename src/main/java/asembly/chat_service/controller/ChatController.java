@@ -30,8 +30,8 @@ public class ChatController {
     }
 
     @GetMapping("/user/{user_id}")
-    public ResponseEntity<List<Chat>> findChatsByUserId(@PathVariable String user_id){
-        return chatService.findChatsByUserId(user_id);
+    public ResponseEntity<List<Chat>> findByUserId(@PathVariable String user_id){
+        return chatService.findByUserId(user_id);
     }
 
     @PostMapping

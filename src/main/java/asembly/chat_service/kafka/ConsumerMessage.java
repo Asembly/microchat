@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@KafkaListener(topics = "message-events", containerFactory = "messageListener", groupId = "message")
+@KafkaListener(topics = "message-events", containerFactory = "messageListener", groupId = "chat-service-group")
 public class ConsumerMessage {
 
     @Autowired

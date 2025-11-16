@@ -8,7 +8,6 @@ import asembly.chat_service.repository.ChatRepository;
 import asembly.dto.chat.ChatCreateRequest;
 import asembly.dto.chat.ChatUsersRequest;
 import asembly.event.chat.ChatEventType;
-import asembly.event.chat.ChatUserEventType;
 import asembly.exception.ChatNotFoundException;
 import asembly.exception.UserAlreadyExistException;
 import asembly.exception.UserNotFoundException;
@@ -63,7 +62,7 @@ public class ChatService {
             throw new UserNotFoundException();
 
         producerService.sendEvent(
-                ChatUserEventType.CHAT_KICK_USER,
+                ChatEventType.CHAT_KICK_USER,
                 chat.getId(),
                 dto.users_id()
         );
@@ -86,7 +85,7 @@ public class ChatService {
         }
 
         producerService.sendEvent(
-                ChatUserEventType.CHAT_ADD_USER,
+                ChatEventType.CHAT_ADD_USER,
                 chat.getId(),
                 dto.users_id()
         );
@@ -150,9 +149,11 @@ public class ChatService {
         return ResponseEntity.ok(chatRepository.save(chat));
     }
 
-    public ResponseEntity<List<Chat>> findChatsByUserId(String user_id)
+    public ResponseEntity<List<Chat>> findByUserId(String user_id)
     {
-       var chats = chatRepository.findChatsByUserId(user_id).orElseThrow();
+       var chats = chatRepository.findChatsByUserId(user_id).orElseThrow(
+               ChatNotFoundException::new
+       );
        return ResponseEntity.ok(chats);
     }
 
