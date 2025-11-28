@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: user-service
+        uri: ${USER_SERVICE_URI:http://user-service:8081}
+        predicates:
+          - Path=/users/**
+        filters:
+          - AddRequestHeader=X-Gateway, GatewayActive
+      - id: auth-service
+        uri: ${AUTH_SERVICE_URI:http://auth-service:8080}
+        predicates:
+          - Path=/auth/**
+        filters:
+          - AddRequestHeader=X-Gateway, GatewayActive
+      - id: chat-service
+        uri: ${CHAT_SERVICE_URI:http://chat-service:8082}
+        predicates:
+          - Path=/chats/**
+        filters:
+          - AddRequestHeader=X-Gateway, GatewayActive
+      - id: message-service
+        uri: ${MESSAGE_SERVICE_URI:http://message-service:8083}
+        predicates:
+          - Path=/messages/**
+        filters:
+          - AddRequestHeader=X-Gateway, GatewayActive
+  main:
+    web-application-type: reactive
+server:
+  port: 9000
+  forward-headers-strategy: framework
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: api-gateway
+  client:
+    service-url:
+      defaultZone: ${SPRING_EUREKA_CLIENT_SERVICE-URL}

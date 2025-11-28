@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: user-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5433/db
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    username: ${SPRING_DATASOURCE_USERNAME}
+  kafka:
+    bootstrap-servers: kafka:9090
+  jwt:
+    secret:
+      auth: ${SPRING_JWT_SECRET}
+server:
+  port: 8081
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${SPRING_EUREKA_CLIENT_SERVICE-URL}

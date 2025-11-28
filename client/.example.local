@@ -1,0 +1,4 @@
+BASE_URL=http://localhost:9000
+NEXT_PUBLIC_WS_URL=http://localhost:8083/ws
+AUTH_SECRET="your_generated_secret_here"
+AUTH_TRUST_HOST=http://localhost:3000
